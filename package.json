@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "",
-    "postinstall": "husky install",
+    "postinstall": "test -n \"$VERCEL\" || husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "storybook": "storybook dev -p 6006",
