@@ -64,8 +64,6 @@ export const PATH_APPS = {
 
 export const PATH_PAGES = {
   root: ROOTS_PAGES,
-  pricing: path(ROOTS_PAGES, '/pricing'),
-  blank: path(ROOTS_PAGES, '/blank'),
 };
 
 export const PATH_PROJECTS = {
@@ -99,16 +97,14 @@ export const PATH_AUTH = {
   signin: path(ROOTS_AUTH, '/signin'),
   signup: path(ROOTS_AUTH, '/signup'),
   passwordReset: path(ROOTS_AUTH, '/password-reset'),
-  clerk: path(ROOTS_AUTH, '/clerk'),
-  auth0: path(ROOTS_AUTH, '/auth0'),
 };
 
 export const PATH_START = {
-  root: 'https://mantine-analytics-dashboard-docs.netlify.app/getting-started',
+  root: 'https://github.com/mrwick1/pulse-analytics#getting-started',
 };
 
 export const PATH_DOCS = {
-  root: 'https://mantine-analytics-dashboard-docs.netlify.app/',
+  root: 'https://github.com/mrwick1/pulse-analytics',
 };
 
 export const PATH_CHANGELOG = {
@@ -120,14 +116,12 @@ export const PATH_ANNOUNCEMENTS = {
 };
 
 export const PATH_GITHUB = {
-  org: 'https://github.com/design-sparx',
-  repo: 'https://github.com/design-sparx/mantine-analytics-dashboard',
+  org: 'https://github.com/mrwick1',
+  repo: 'https://github.com/mrwick1/pulse-analytics',
 };
 
 export const PATH_AUTH_PROVIDERS = {
   root: ROOTS_AUTH_PROVIDERS,
-  clerk: path(ROOTS_AUTH_PROVIDERS, '/clerk'),
-  auth0: path(ROOTS_AUTH_PROVIDERS, '/auth0'),
 };
 
 export const PATH_ABOUT = {

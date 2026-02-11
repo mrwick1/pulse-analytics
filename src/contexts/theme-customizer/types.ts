@@ -19,6 +19,7 @@ export type Direction = 'ltr' | 'rtl';
 
 // Predefined color schemes
 export const COLOR_SCHEMES = {
+  brand: { name: 'Brand', value: 'brand', color: '#0055FF' },
   blue: { name: 'Blue', value: 'blue', color: '#339af0' },
   cyan: { name: 'Cyan', value: 'cyan', color: '#22b8cf' },
   teal: { name: 'Teal', value: 'teal', color: '#20c997' },
@@ -87,10 +88,10 @@ export const defaultThemeConfig: ThemeConfig = {
     dir: 'ltr',
   },
   appearance: {
-    colorScheme: 'auto',
-    primaryColor: 'blue',
-    borderRadius: 'sm',
+    colorScheme: 'dark',
+    primaryColor: 'brand',
+    borderRadius: 'xs',
     compact: false,
-    cardFeel: 'elevated',
+    cardFeel: 'bordered',
   },
 };

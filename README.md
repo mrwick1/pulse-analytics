@@ -1,6 +1,6 @@
 # Pulse Analytics
 
-A comprehensive analytics dashboard built with Next.js, React, and Mantine UI. Features 13 dashboard variants, built-in app modules, real-time data visualization, and a fully customizable theme system.
+A comprehensive analytics dashboard built with Next.js, React, and Mantine UI. Features 13 dashboard variants, built-in app modules, real-time data visualization, and a fully customizable theme system with Swiss Precision design language as the default.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=next.js&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=white)
@@ -8,19 +8,17 @@ A comprehensive analytics dashboard built with Next.js, React, and Mantine UI. F
 ![Mantine](https://img.shields.io/badge/Mantine-7-339AF0?style=flat-square&logo=mantine&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-<!-- ![Pulse Analytics Screenshot](docs/screenshot.png) -->
-
 ## Features
 
 - **13 Dashboard Variants** — Analytics, SaaS, eCommerce, CRM, Finance, Marketing, Healthcare, Education, Logistics, HR, Real Estate, LLM/AI, and Default
 - **Built-in Apps** — Email, Chat, Calendar, Invoices, Projects, Orders, Products, Customers, Tasks (Kanban), File Manager, Notifications, Profile, Settings
 - **Data Visualization** — Interactive charts with Recharts (area, bar, line, pie, radar, composed)
 - **Theme Customizer** — Live preview editor for colors, radius, layout, and color scheme
-- **Authentication** — Sign in, sign up, password reset flows with Clerk integration support
+- **Swiss Precision Design** — Space Grotesk + JetBrains Mono fonts, #0055FF accent, sharp corners, 1px borders, dark mode default
+- **Authentication** — Sign in, sign up, password reset flows with mock credentials
 - **Mock API System** — 30+ REST endpoints backed by 76 JSON data files
 - **Responsive Design** — Optimized for desktop, tablet, and mobile
 - **Dark Mode** — Full light/dark theme support
-- **Storybook** — Component documentation and visual testing
 
 ## Getting Started
 
@@ -41,7 +39,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `pnpm build` | Build for production |
 | `pnpm start` | Start production server |
 | `pnpm lint` | Run ESLint |
-| `pnpm storybook` | Start Storybook on port 6006 |
 | `pnpm prettier` | Format all files |
 
 ## Dashboard Modules
@@ -71,8 +68,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - **FullCalendar** — Interactive calendar component
 - **Tiptap** — Rich text editor
 - **Tabler Icons** — Icon library
-- **Storybook** — Component documentation
-- **Changesets** — Version management
 
 ## Project Structure
 
@@ -82,9 +77,7 @@ src/
 │   ├── api/               # 30+ mock data API routes
 │   ├── auth/              # Authentication pages
 │   ├── dashboard/         # 13 dashboard variants
-│   ├── apps/              # Built-in app modules
-│   ├── pages/             # Static pages (about, pricing)
-│   └── (public)/          # Public routes (changelog, announcements)
+│   └── apps/              # Built-in app modules
 ├── components/            # 48 reusable component directories
 ├── contexts/              # Theme customizer and notification contexts
 ├── layouts/               # Guest and Main layout components
@@ -108,6 +101,13 @@ Key architectural decisions:
 - **Mock API layer** — All data flows through `/api/*` routes for easy backend swapping
 - **Context-based theming** — Runtime theme customization persisted to localStorage
 - **Component co-location** — Dashboard-specific components grouped by module
+
+## Demo Credentials
+
+```
+Email: demo@example.com
+Password: demo123
+```
 
 ## License
 

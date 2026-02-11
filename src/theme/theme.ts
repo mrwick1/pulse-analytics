@@ -11,11 +11,37 @@ export const createDynamicTheme = (config: {
   return createTheme({
     primaryColor: config.primaryColor,
 
-    // Preserve the font family
     fontFamily:
-      'Open Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji',
+      "'Space Grotesk Variable', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif",
     fontFamilyMonospace:
-      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
+      "'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
+
+    colors: {
+      brand: [
+        '#e5edff',
+        '#c7d7ff',
+        '#99b8ff',
+        '#6b99ff',
+        '#3d7aff',
+        '#1a63ff',
+        '#0055FF',
+        '#0044cc',
+        '#003399',
+        '#002266',
+      ],
+      dark: [
+        '#E8E8E8',
+        '#C1C1C1',
+        '#999999',
+        '#717171',
+        '#4A4A4A',
+        '#333333',
+        '#1A1A1A',
+        '#0F0F0F',
+        '#0A0A0A',
+        '#050505',
+      ],
+    },
 
     // Dynamic spacing based on compact mode
     spacing: {
@@ -28,13 +54,13 @@ export const createDynamicTheme = (config: {
 
     // Dynamic border radius
     radius: {
-      xs: rem(config.borderRadius === 'xs' ? 2 : 4),
+      xs: rem(config.borderRadius === 'xs' ? 0 : 4),
       sm: rem(
-        config.borderRadius === 'sm' ? 4 : config.borderRadius === 'xs' ? 2 : 6,
+        config.borderRadius === 'sm' ? 4 : config.borderRadius === 'xs' ? 0 : 6,
       ),
       md: rem(
         config.borderRadius === 'xs'
-          ? 4
+          ? 2
           : config.borderRadius === 'sm'
             ? 6
             : config.borderRadius === 'md'
@@ -45,7 +71,7 @@ export const createDynamicTheme = (config: {
       ),
       lg: rem(
         config.borderRadius === 'xs'
-          ? 6
+          ? 4
           : config.borderRadius === 'sm'
             ? 8
             : config.borderRadius === 'md'
@@ -56,7 +82,7 @@ export const createDynamicTheme = (config: {
       ),
       xl: rem(
         config.borderRadius === 'xs'
-          ? 8
+          ? 6
           : config.borderRadius === 'sm'
             ? 12
             : config.borderRadius === 'md'
@@ -329,7 +355,7 @@ export const createDynamicTheme = (config: {
 
 // Default theme export (fallback)
 export const myTheme = createDynamicTheme({
-  primaryColor: 'blue',
-  borderRadius: 'sm',
+  primaryColor: 'brand',
+  borderRadius: 'xs',
   compact: false,
 });

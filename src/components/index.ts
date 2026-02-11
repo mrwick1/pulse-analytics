@@ -40,7 +40,6 @@ export { default as LanguageTable } from './language-table';
 // Cards
 export { default as AddTaskCard } from './add-task-card';
 export { default as InvoiceDetailsCard } from './invoice-details-card';
-export { default as PricingCard } from './pricing-card';
 export { default as ProjectsCard } from './projects-card';
 
 // Kanban
@@ -66,7 +65,6 @@ export { default as CalendarView } from './calendar-view';
 
 // Misc
 export { default as ErrorAlert } from './error-alert';
-export { default as Faqs } from './faqs';
 export { default as LanguagePicker } from './language-picker';
 export { default as SystemNotificationBanner } from './system-notification-banner';
 

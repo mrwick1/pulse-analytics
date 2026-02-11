@@ -143,7 +143,7 @@ function Products() {
         <title>Products | Pulse Analytics</title>
         <meta
           name="description"
-          content="Explore our versatile dashboard website template featuring a stunning array of themes and meticulously crafted components."
+          content="Pulse Analytics — a modern analytics dashboard with 13 dashboard variants, 13+ app modules, and a fully customizable theme system."
         />
       </>
       <PageHeader

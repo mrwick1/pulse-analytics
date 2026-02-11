@@ -4,24 +4,22 @@ import { createElement } from 'react';
 
 import {
   Anchor,
-  Button,
   Container,
-  Flex,
   Paper,
   PaperProps,
   SimpleGrid,
   Stack,
   Text,
-  ThemeIcon,
   Title,
-  useMantineColorScheme,
-  useMantineTheme,
+  ThemeIcon,
+  Flex,
 } from '@mantine/core';
 import {
   IconBrandGithub,
-  IconBug,
-  IconBulb,
-  IconCode,
+  IconBrandMantine,
+  IconBrandNextjs,
+  IconBrandTypescript,
+  IconChartBar,
   IconExternalLink,
 } from '@tabler/icons-react';
 
@@ -40,28 +38,24 @@ const items = [
 
 const CARDS = [
   {
-    title: 'GitHub',
-    description: 'Source code of the website.',
-    icon: IconBrandGithub,
-    link: PATH_GITHUB.repo,
+    title: 'Next.js 16',
+    description: 'App Router with React Server Components and React Compiler.',
+    icon: IconBrandNextjs,
   },
   {
-    title: 'Report Bug',
-    description: 'Something not working? Report a bug',
-    icon: IconBug,
-    link: PATH_GITHUB.repo + '/issues/new/choose',
+    title: 'TypeScript',
+    description: 'Strict mode enabled with full type safety across all components.',
+    icon: IconBrandTypescript,
   },
   {
-    title: 'Request Feature',
-    description: 'Need something? Request a new feature.',
-    icon: IconBulb,
-    link: PATH_GITHUB.repo + '/issues/new/choose',
+    title: 'Mantine 7',
+    description: '100+ accessible UI components with built-in theming.',
+    icon: IconBrandMantine,
   },
   {
-    title: 'Contribute',
-    description: 'Contribute to this project.',
-    icon: IconCode,
-    link: PATH_GITHUB.repo + '/blob/main/CONTRIBUTING.md',
+    title: 'Recharts',
+    description: 'Composable charting for area, bar, line, pie, and radar charts.',
+    icon: IconChartBar,
   },
 ];
 
@@ -69,70 +63,40 @@ const PAPER_PROPS: PaperProps = {
   p: 'md',
   shadow: 'md',
   radius: 'md',
-  style: {
-    '&:hover': {
-      color: 'red',
-    },
-  },
 };
 
-function Pricing() {
-  const theme = useMantineTheme();
-  const { colorScheme } = useMantineColorScheme();
-
+function About() {
   return (
     <>
-      <>
-        <title>About | Pulse Analytics</title>
-        <meta
-          name="description"
-          content="Explore our versatile dashboard website template featuring a stunning array of themes and meticulously crafted components. Elevate your web project with seamless integration, customizable themes, and a rich variety of components for a dynamic user experience. Effortlessly bring your data to life with our intuitive dashboard template, designed to streamline development and captivate users. Discover endless possibilities in design and functionality today!"
-        />
-      </>
+      <title>About | Pulse Analytics</title>
       <Container fluid>
         <Stack gap="lg">
           <PageHeader title="About" breadcrumbItems={items} />
           <Surface component={Paper} {...PAPER_PROPS}>
+            <Title order={4} mb="xs">
+              Pulse Analytics
+            </Title>
             <Text mb="md">
-              A free, open source, Next 14, React 18 admin dashboard template
-              created using Mantine 7.
+              A modern analytics dashboard with 13 dashboard variants, 13+ app
+              modules, 136 components, and a live theme customizer. Built with
+              Next.js 16, React 19, Mantine 7, and TypeScript.
             </Text>
-            <Button
-              component="a"
-              target="_blank"
-              href={PATH_GITHUB.repo}
-              variant="filled"
-              leftSection={<IconBrandGithub size={16} />}
-              rel="noopener noreferrer"
-            >
-              Give us a star
-            </Button>
+            <Text size="sm" c="dimmed">
+              Featuring Swiss Precision design language — Space Grotesk + JetBrains
+              Mono fonts, #0055FF accent, sharp corners, and dark mode by default.
+            </Text>
           </Surface>
           <SimpleGrid cols={{ base: 1, sm: 2 }}>
             {CARDS.map((s) => (
-              <a
-                key={`col-${s.title}`}
-                href={s.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  textDecoration: 'none',
-                  color: colorScheme === 'dark' ? theme.white : theme.black,
-                }}
-              >
-                <Surface component={Paper} {...PAPER_PROPS}>
-                  <Stack gap="xs">
-                    <Flex justify="space-between">
-                      <ThemeIcon size="lg" variant="light">
-                        {createElement(s.icon)}
-                      </ThemeIcon>
-                      <IconExternalLink size={18} />
-                    </Flex>
-                    <Title order={5}>{s.title}</Title>
-                    <Text size="sm">{s.description}</Text>
-                  </Stack>
-                </Surface>
-              </a>
+              <Surface key={s.title} component={Paper} {...PAPER_PROPS}>
+                <Stack gap="xs">
+                  <ThemeIcon size="lg" variant="light">
+                    {createElement(s.icon)}
+                  </ThemeIcon>
+                  <Title order={5}>{s.title}</Title>
+                  <Text size="sm">{s.description}</Text>
+                </Stack>
+              </Surface>
             ))}
           </SimpleGrid>
         </Stack>
@@ -141,4 +105,4 @@ function Pricing() {
   );
 }
 
-export default Pricing;
+export default About;
