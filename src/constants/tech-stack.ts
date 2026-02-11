@@ -1,9 +1,9 @@
 export const TECH_STACK = [
-  { title: 'nextjs', version: '14.2.26', href: 'https://nextjs.org/' },
-  { title: 'react', version: '18.2.0', href: 'https://react.dev/' },
+  { title: 'nextjs', version: '16.0.10', href: 'https://nextjs.org/' },
+  { title: 'react', version: '19.0.0', href: 'https://react.dev/' },
   {
     title: 'typescript',
-    version: '5.1.6',
+    version: '5.6.0',
     href: 'https://www.typescriptlang.org/',
   },
   { title: 'mantine', version: '7.14.3', href: 'https://mantine.dev/' },

@@ -8,7 +8,7 @@ import { useHeadroom } from '@mantine/hooks';
 import { SystemNotificationBanner } from '@/components';
 
 import HeaderNav from './HeaderNav/HeaderNav';
-import FooterNav from '../Main/components/Footer';
+import FooterNav from './FooterNav/FooterNav';
 
 type GuestLayoutProps = {
   children: ReactNode;
@@ -22,7 +22,9 @@ function GuestLayout({ children }: GuestLayoutProps) {
     <>
       <SystemNotificationBanner layout="guest" />
       <AppShell header={{ height: 60, collapsed: !pinned, offset: false }}>
-        <AppShell.Header>
+        <AppShell.Header
+          style={{ backgroundColor: 'transparent', borderBottom: 'none' }}
+        >
           <HeaderNav />
         </AppShell.Header>
         <AppShell.Main>

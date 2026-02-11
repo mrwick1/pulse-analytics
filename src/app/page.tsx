@@ -1,275 +1,326 @@
 'use client';
 
-import { createElement } from 'react';
+import { createElement, ReactNode } from 'react';
 
-import {
-  Box,
-  Button,
-  Container,
-  ContainerProps,
-  Flex,
-  Grid,
-  Group,
-  Image,
-  Paper,
-  PaperProps,
-  SimpleGrid,
-  Spoiler,
-  Stack,
-  Text,
-  ThemeIcon,
-  Title,
-  Tooltip,
-  UnstyledButton,
-  rem,
-  useMantineColorScheme,
-} from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
-import {
-  IconArrowRight,
-  IconBrandGithub,
-  IconPlayerPlay,
-} from '@tabler/icons-react';
 import Link from 'next/link';
+import { IconArrowRight, IconBrandGithub } from '@tabler/icons-react';
 
 import { HOME_APPS } from '@/constants/home-apps';
 import { HOME_DASHBOARDS } from '@/constants/home-dashboard';
 import { HOME_FEATURES } from '@/constants/home-features';
 import { TECH_STACK } from '@/constants/tech-stack';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import GuestLayout from '@/layouts/Guest';
-import { PATH_AUTH, PATH_GITHUB } from '@/routes';
+import PulseMark from '@/components/logo/PulseMark';
+import { PATH_DASHBOARD, PATH_GITHUB } from '@/routes';
 
 import classes from './page.module.css';
 
-const IMAGE_PAPER_PROPS: PaperProps = {
-  py: 'md',
-  className: classes.paperImage,
-};
+function Reveal({
+  children,
+  className = '',
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div
+      ref={ref}
+      className={`${classes.reveal} ${isVisible ? classes.revealVisible : ''} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+const GRID_COLS = Array.from({ length: 12 });
 
 export default function Home() {
-  const tablet_match = useMediaQuery('(max-width: 768px)');
-  const { colorScheme } = useMantineColorScheme();
-
-  const BOX_PROPS: ContainerProps = {
-    pt: rem(120),
-    pb: rem(80),
-    px: tablet_match ? rem(36) : rem(40 * 3),
-    className: classes.section,
-  };
+  const [featured, ...restDashboards] = HOME_DASHBOARDS;
 
   return (
     <>
-      <>
-        <title>Pulse Analytics | Website UI Kit</title>
-        <meta
-          name="description"
-          content="Explore our versatile dashboard website template featuring a stunning array of themes and meticulously crafted components. Elevate your web project with seamless integration, customizable themes, and a rich variety of components for a dynamic user experience. Effortlessly bring your data to life with our intuitive dashboard template, designed to streamline development and captivate users. Discover endless possibilities in design and functionality today!"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </>
+      <title>Pulse Analytics</title>
+      <meta
+        name="description"
+        content="A modern analytics dashboard with 13 dashboard variants, 13+ app modules, and a fully customizable theme system. Built with Next.js 16, React 19, and Mantine 7."
+      />
       <GuestLayout>
-        <Box className={classes.hero}>
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
-              <Stack>
-                <Text>Build like a Pro</Text>
-                <Title className={classes.title}>
-                  The simplest and fastest way to build your next{' '}
-                  <Text component="span" inherit className={classes.highlight}>
-                    Mantine UI{' '}
-                  </Text>
-                  &{' '}
-                  <Text component="span" inherit className={classes.highlight}>
-                    Nextjs{' '}
-                  </Text>
-                  dashboard or app.
-                </Title>
-                <Text fz="lg">
-                  Mantine admin template comes with hundreds of UI elements,
-                  forms, tables, charts, pages and icons that helps you to
-                  create your web apps or applications faster.
-                </Text>
-                <Group my="lg">
-                  <Button
-                    component={Link}
-                    href={PATH_AUTH.signin}
-                    size="lg"
-                    leftSection={<IconPlayerPlay size={18} />}
+        <div className={classes.page}>
+          {/* Grid Background */}
+          <div className={classes.gridBg} aria-hidden="true">
+            <div className={classes.gridBgInner}>
+              {GRID_COLS.map((_, i) => (
+                <div key={i} className={classes.gridBgCol} />
+              ))}
+            </div>
+          </div>
+
+          {/* ── Hero ──────────────────────────────── */}
+          <section className={classes.hero}>
+            <div className={classes.sectionLabel} aria-hidden="true">
+              Introduction
+            </div>
+            <div className={classes.heroInner}>
+              <div className={classes.heroContent}>
+                <p className={classes.heroSubtitle}>// ANALYTICS DASHBOARD</p>
+                <h1 className={classes.heroTitle}>
+                  Data-driven dashboards built with{' '}
+                  <span className={classes.heroAccent}>precision.</span>
+                </h1>
+                <p className={classes.heroDescription}>
+                  13 dashboard variants, 13+ app modules, 136 components, and a
+                  live theme customizer. Built with Next.js 16, React 19,
+                  Mantine 7, and TypeScript.
+                </p>
+                <div className={classes.heroMeta}>
+                  <div className={classes.heroMetaItem}>
+                    <span className={classes.heroMetaLabel}>Dashboards</span>
+                    <span className={classes.heroMetaValue}>13</span>
+                  </div>
+                  <div className={classes.heroMetaItem}>
+                    <span className={classes.heroMetaLabel}>Apps</span>
+                    <span className={classes.heroMetaValue}>13+</span>
+                  </div>
+                  <div className={classes.heroMetaItem}>
+                    <span className={classes.heroMetaLabel}>Components</span>
+                    <span className={classes.heroMetaValue}>136</span>
+                  </div>
+                  <div className={classes.heroMetaItem}>
+                    <span className={classes.heroMetaLabel}>APIs</span>
+                    <span className={classes.heroMetaValue}>30+</span>
+                  </div>
+                </div>
+                <div className={classes.heroCta}>
+                  <Link
+                    href={PATH_DASHBOARD.default}
+                    className={classes.btnPrimary}
                   >
-                    Live Preview
-                  </Button>
-                  <Button
-                    size="lg"
-                    component="a"
+                    Explore Dashboard
+                    <IconArrowRight size={14} />
+                  </Link>
+                  <a
                     href={PATH_GITHUB.repo}
                     target="_blank"
-                    variant="white"
-                    leftSection={<IconBrandGithub size={18} />}
+                    rel="noopener noreferrer"
+                    className={classes.btnOutline}
                   >
-                    Give us a star
-                  </Button>
-                </Group>
-                <Stack>
-                  <Text fw={700}>Tech Stack:</Text>
-                  <Spoiler
-                    maxHeight={48}
-                    showLabel="Show more"
-                    hideLabel="Show less"
-                    styles={{ control: { color: 'white', margin: '4px 8px' } }}
-                  >
-                    <Group pb="sm">
-                      {TECH_STACK.map((t) => (
-                        <Tooltip
-                          key={t.title}
-                          label={`${t.title}-${t.version}`}
-                        >
-                          <UnstyledButton
-                            className={classes.stackControl}
-                            component="a"
-                            href={t.href}
-                            target="_blank"
-                          >
-                            {t.title}
-                          </UnstyledButton>
-                        </Tooltip>
-                      ))}
-                    </Group>
-                  </Spoiler>
-                </Stack>
-              </Stack>
-            </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }}>
-              <Image
-                src={
-                  colorScheme === 'dark'
-                    ? '/thumbnail-img.jpg'
-                    : '/thumbnail-img-b.jpg'
-                }
-                alt="/"
-                radius="md"
-              />
-            </Grid.Col>
-          </Grid>
-        </Box>
-        <Flex
-          direction={{ base: 'column', sm: 'row' }}
-          justify={{ sm: 'space-evenly' }}
-          align="center"
-          px="lg"
-          pt="xl"
-          className={classes.section}
-        >
-          <Text>Created: June, 7 2025</Text>
-          <Text>Updated: December, 8 2023</Text>
-          <Text>v 3.0</Text>
-          <Text
-            component="a"
-            target="_blank"
-            href="https://github.com/design-sparx/mantine-analytics-dashboard/releases"
-          >
-            View changelog
-          </Text>
-        </Flex>
-        <Container fluid {...BOX_PROPS}>
-          <Title order={2} ta="center" mb="xl">
-            Carefully crafted pages ready to use in your project
-          </Title>
-          <SimpleGrid
-            cols={{ base: 1, sm: 1, md: 2, lg: 3 }}
-            spacing={{ base: 'sm', sm: 'sm', md: 'sm', lg: 'lg' }}
-            verticalSpacing={{ base: 'sm', sm: 'sm', md: 'sm', lg: 'lg' }}
-          >
-            {HOME_DASHBOARDS.map((dashboard) => (
-              <Paper
-                key={dashboard.title}
-                component={Link}
-                href={dashboard.link}
-                {...IMAGE_PAPER_PROPS}
-              >
-                <Image
-                  src={dashboard.img}
-                  alt={dashboard.title}
-                  className={classes.image}
-                />
-                <Text mt="md" ta="center" tt="capitalize" fz="lg">
-                  {dashboard.title}
-                </Text>
-              </Paper>
-            ))}
-          </SimpleGrid>
-        </Container>
-        <Container fluid {...BOX_PROPS}>
-          <Title order={2} ta="center" mb="xl">
-            {HOME_APPS.length - 2}+ apps included
-          </Title>
-          <SimpleGrid
-            cols={{ base: 1, sm: 1, md: 2, lg: 3 }}
-            spacing={{ base: 'sm', sm: 'sm', md: 'sm', lg: 'lg' }}
-            verticalSpacing={{ base: 'sm', sm: 'sm', md: 'sm', lg: 'lg' }}
-          >
-            {HOME_APPS.map((app) => (
-              <Paper
-                key={app.title}
-                component={Link}
-                href={app.link}
-                {...IMAGE_PAPER_PROPS}
-              >
-                <Image
-                  src={app.img}
-                  alt={app.title}
-                  className={classes.image}
-                />
-                <Text mt="md" ta="center" tt="capitalize" fz="lg">
-                  {app.title}
-                </Text>
-              </Paper>
-            ))}
-          </SimpleGrid>
-        </Container>
-        <Container fluid {...BOX_PROPS}>
-          <Title order={2} ta="center" mb="xl">
-            Mantine admin helps you build beautiful websites that stand out and
-            automatically adapt to your style.
-          </Title>
-          <SimpleGrid
-            cols={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4 }}
-            spacing={{ base: 'sm', sm: 'sm', md: 'sm', lg: 'lg' }}
-            verticalSpacing={{ base: 'sm', sm: 'sm', md: 'sm', lg: 'lg' }}
-          >
-            {HOME_FEATURES.map((feature) => (
-              <Paper
-                key={feature.title}
-                p="md"
-                withBorder
-                className={classes.featureCard}
-              >
-                <Flex gap="md">
-                  <ThemeIcon size="xl" radius="xl" variant="light">
-                    {createElement(feature.icons, { style: { fontSize: 20 } })}
-                  </ThemeIcon>
-                  <Stack gap={4}>
-                    <Title order={4}>{feature.title}</Title>
-                    <Text fz="md">{feature.description}</Text>
-                  </Stack>
-                </Flex>
-              </Paper>
-            ))}
-          </SimpleGrid>
-        </Container>
-        <Box {...BOX_PROPS}>
-          <Paper className={classes.contactPaper}>
-            <Title order={3} mb="md">
-              For any queries?
-            </Title>
-            <Button
-              variant="subtle"
-              rightSection={<IconArrowRight size={16} />}
-            >
-              Contact Us
-            </Button>
-          </Paper>
-        </Box>
+                    <IconBrandGithub size={14} />
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+
+              {/* Screenshot with browser chrome */}
+              <div className={classes.heroScreenshot}>
+                <div className={classes.browserFrame}>
+                  <div className={classes.browserBar}>
+                    <div className={classes.browserDot} />
+                    <div className={classes.browserDot} />
+                    <div className={classes.browserDot} />
+                  </div>
+                  <div className={classes.browserImageWrap}>
+                    <img
+                      src="/showcase/dashboard-default.png"
+                      alt="Pulse Analytics dashboard preview"
+                      className={classes.browserImage}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── 01 Dashboards ─────────────────────── */}
+          <section className={classes.section}>
+            <div className={classes.sectionLabel} aria-hidden="true">
+              Every Metric
+            </div>
+            <div className={classes.sectionInner}>
+              <Reveal>
+                <div className={classes.sectionHeading}>
+                  <span className={classes.sectionNumber}>01</span>Dashboards
+                </div>
+              </Reveal>
+
+              {/* Featured dashboard */}
+              <Reveal>
+                <Link href={featured.link} className={classes.featuredCard}>
+                  <div className={classes.featuredImageWrap}>
+                    <img
+                      src={featured.img}
+                      alt={featured.title}
+                      className={classes.featuredImage}
+                      loading="lazy"
+                    />
+                    <div className={classes.featuredOverlay}>
+                      <div className={classes.featuredTitle}>
+                        {featured.title}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+
+              {/* Supporting dashboard cards */}
+              <div className={`${classes.dashboardGrid} ${classes.stagger}`}>
+                {restDashboards.map((d) => (
+                  <Reveal key={d.title}>
+                    <Link href={d.link} className={classes.dashboardCard}>
+                      <div className={classes.dashboardImageWrap}>
+                        <div className={classes.dashboardBar}>
+                          <div className={classes.dashboardDot} />
+                          <div className={classes.dashboardDot} />
+                          <div className={classes.dashboardDot} />
+                        </div>
+                        <img
+                          src={d.img}
+                          alt={d.title}
+                          className={classes.dashboardImage}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className={classes.dashboardTitle}>{d.title}</div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ── 02 Applications ───────────────────── */}
+          <section className={classes.section}>
+            <div className={classes.sectionLabel} aria-hidden="true">
+              App Modules
+            </div>
+            <div className={classes.sectionInner}>
+              <Reveal>
+                <div className={classes.sectionHeading}>
+                  <span className={classes.sectionNumber}>02</span>Applications
+                </div>
+              </Reveal>
+
+              <div className={`${classes.appsGrid} ${classes.stagger}`}>
+                {HOME_APPS.map((app) => (
+                  <Reveal key={app.title}>
+                    <Link href={app.link} className={classes.appCard}>
+                      <div className={classes.appCardImageWrap}>
+                        <img
+                          src={app.img}
+                          alt={app.title}
+                          className={classes.appCardImage}
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className={classes.appCardOverlay}>
+                        <div className={classes.appCardTitle}>{app.title}</div>
+                      </div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ── 03 Features ───────────────────────── */}
+          <section className={classes.section}>
+            <div className={classes.sectionLabel} aria-hidden="true">
+              Capabilities
+            </div>
+            <div className={classes.sectionInner}>
+              <Reveal>
+                <div className={classes.sectionHeading}>
+                  <span className={classes.sectionNumber}>03</span>Features
+                </div>
+              </Reveal>
+
+              <div className={`${classes.featuresGrid} ${classes.stagger}`}>
+                {HOME_FEATURES.map((f) => (
+                  <Reveal key={f.title}>
+                    <div className={classes.featureCard}>
+                      <div className={classes.featureIcon}>
+                        {createElement(f.icons, { size: 22 })}
+                      </div>
+                      <div className={classes.featureTitle}>{f.title}</div>
+                      <div className={classes.featureDesc}>{f.description}</div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ── 04 Tech Stack ─────────────────────── */}
+          <section className={classes.section}>
+            <div className={classes.sectionLabel} aria-hidden="true">
+              Tooling
+            </div>
+            <div className={classes.sectionInner}>
+              <Reveal>
+                <div className={classes.sectionHeading}>
+                  <span className={classes.sectionNumber}>04</span>Tech Stack
+                </div>
+              </Reveal>
+
+              <div className={`${classes.techGrid} ${classes.stagger}`}>
+                {TECH_STACK.map((t) => (
+                  <Reveal key={t.title}>
+                    <a
+                      href={t.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={classes.techTag}
+                    >
+                      <span className={classes.techTagPrefix}>&gt;</span>
+                      {t.title} {t.version}
+                    </a>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ── CTA ───────────────────────────────── */}
+          <section className={classes.ctaSection}>
+            <Reveal>
+              <div className={classes.ctaMark}>
+                <PulseMark size={80} />
+              </div>
+            </Reveal>
+            <Reveal>
+              <h2 className={classes.ctaTitle}>
+                Ready to see it in action?
+              </h2>
+            </Reveal>
+            <Reveal>
+              <p className={classes.ctaDesc}>
+                Sign in with the demo credentials and explore every dashboard,
+                app, and component.
+              </p>
+            </Reveal>
+            <Reveal>
+              <div className={classes.ctaButtons}>
+                <Link
+                  href={PATH_DASHBOARD.default}
+                  className={classes.btnPrimary}
+                >
+                  Explore Dashboard
+                  <IconArrowRight size={14} />
+                </Link>
+                <a
+                  href={PATH_GITHUB.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={classes.btnOutline}
+                >
+                  <IconBrandGithub size={14} />
+                  View Source
+                </a>
+              </div>
+            </Reveal>
+          </section>
+        </div>
       </GuestLayout>
     </>
   );
