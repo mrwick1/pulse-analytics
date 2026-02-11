@@ -1,11 +1,45 @@
 .logo {
-  padding: rem(4px) rem(8px);
-  font-size: var(--mantine-font-size-md);
-  border-radius: var(--mantine-radius-sm);
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
 
-  @mixin hover {
-    transition: all ease 150ms;
-    font-weight: 800;
-  }
+.logo:hover {
+  opacity: 0.85;
+}
+
+.stacked {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wordmark {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.stacked .wordmark {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.wordmarkPulse {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #E8E8E8;
+}
+
+.wordmarkAnalytics {
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #717171;
 }

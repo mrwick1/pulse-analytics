@@ -1,36 +1,37 @@
-import {
-  Group,
-  Text,
-  UnstyledButton,
-  UnstyledButtonProps,
-} from '@mantine/core';
-import Image from 'next/image';
+import { UnstyledButton, UnstyledButtonProps } from '@mantine/core';
 import Link from 'next/link';
 
+import PulseMark from './PulseMark';
 import classes from './Logo.module.css';
 
 type LogoProps = {
   href?: string;
   showText?: boolean;
+  size?: number;
+  variant?: 'horizontal' | 'stacked';
 } & UnstyledButtonProps;
 
-const Logo = ({ href, showText = true, ...others }: LogoProps) => {
+const Logo = ({
+  href,
+  showText = true,
+  size = 28,
+  variant = 'horizontal',
+  ...others
+}: LogoProps) => {
   return (
     <UnstyledButton
-      className={classes.logo}
+      className={`${classes.logo} ${variant === 'stacked' ? classes.stacked : ''}`}
       component={Link}
       href={href || '/'}
       {...others}
     >
-      <Group gap="xs">
-        <Image
-          src="/logo-no-background.png"
-          height={showText ? 32 : 24}
-          width={showText ? 32 : 24}
-          alt="design sparx logo"
-        />
-        {showText && <Text fw={700}>Pulse Analytics</Text>}
-      </Group>
+      <PulseMark size={size} />
+      {showText && (
+        <span className={classes.wordmark}>
+          <span className={classes.wordmarkPulse}>PULSE</span>
+          <span className={classes.wordmarkAnalytics}>ANALYTICS</span>
+        </span>
+      )}
     </UnstyledButton>
   );
 };

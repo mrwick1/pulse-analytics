@@ -3,9 +3,9 @@
 import { ReactNode } from 'react';
 
 import { Box, Center, Stack } from '@mantine/core';
-import Image from 'next/image';
 
 import { SystemNotificationBanner } from '@/components';
+import PulseMark from '@/components/logo/PulseMark';
 
 type AuthProps = {
   children: ReactNode;
@@ -25,13 +25,7 @@ function PasswordLayout({ children }: AuthProps) {
       <Center style={{ flex: 1 }}>
         <Stack>
           <Center>
-            <Image
-              src="/logo-no-background.png"
-              alt="Pulse Analytics logo"
-              width={96}
-              height={96}
-              style={{ objectFit: 'contain' }}
-            />
+            <PulseMark size={64} />
           </Center>
           {children}
         </Stack>
